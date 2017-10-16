@@ -1,20 +1,32 @@
 import React, { Component } from 'react';
 import SearchBar from './SearchBar'
+import { getBarListWithQuery } from '../utils/Api';
 /**
  * SearchBar component.
  */
-export default class FilterableBarList extends React.Component {
+class FilterableBarList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          filterText: ''
+          filterText: '',
+          venues: {},
         };
-        this.handleFilterTextChange = this.handleFilterTextChange.bind(this);
-      }
-      handleFilterTextChange(filterText) {
+    }
+
+    handleFilterTextChange = (filterText) => {
         this.setState({
           filterText: filterText
         });
+        this.searchBarWithQuery(filterText);
+        console.log(this.state.venues);
+    }
+
+      searchBarWithQuery = (query) => {
+        getBarListWithQuery(query).then((venues) => {
+            this.setState({
+                venues: venues
+            });
+        })
       }
       render() {
         return (
@@ -23,8 +35,9 @@ export default class FilterableBarList extends React.Component {
               filterText={this.state.filterText}
               onFilterTextChange={this.handleFilterTextChange}
             />
-            <p>{this.state.filterText}</p>
           </div>
         );
       }
   }
+
+  export default FilterableBarList

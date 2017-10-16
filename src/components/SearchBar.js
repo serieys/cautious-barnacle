@@ -1,16 +1,24 @@
 import React, { Component } from 'react';
+
+
+
 /**
  * SearchBar component.
  */
 export default class SearchBar extends React.Component {
     constructor(props) {
       super(props);
-      this.handleFilterTextChange = this.handleFilterTextChange.bind(this);
+      this.state = {
+      }
     }
-    handleFilterTextChange(e) {
+    handleFilterTextChange = (e) => {
       this.props.onFilterTextChange(e.target.value);
+      
     }
+
+    
     render() {
+      
       return (
         <form>
           <input
