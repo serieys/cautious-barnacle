@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import SearchBar from './SearchBar'
+import BarList from './BarList'
 import { getBarListWithQuery } from '../utils/Api';
 /**
- * SearchBar component.
+ * FilterableBarList component.
  */
 class FilterableBarList extends Component {
     constructor(props) {
@@ -18,14 +19,15 @@ class FilterableBarList extends Component {
           filterText: filterText
         });
         this.searchBarWithQuery(filterText);
-        console.log(this.state.venues);
     }
 
       searchBarWithQuery = (query) => {
         getBarListWithQuery(query).then((venues) => {
-            this.setState({
-                venues: venues
-            });
+            if(!(Object.keys(venues).length === 0)) {
+                this.setState({
+                    venues: venues
+                });
+            }
         })
       }
       render() {
@@ -34,6 +36,9 @@ class FilterableBarList extends Component {
             <SearchBar
               filterText={this.state.filterText}
               onFilterTextChange={this.handleFilterTextChange}
+            />
+            <BarList
+              venues={this.state.venues}
             />
           </div>
         );
