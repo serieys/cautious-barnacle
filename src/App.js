@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import SearchBar from './components/SearchBar'
+import FilterableBarList from './components/FilterableBarList'
 import logo from './logo.svg';
 import './App.css';
 
@@ -7,28 +7,10 @@ import './App.css';
 
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      filterText: ''
-    };
-    this.handleFilterTextChange = this.handleFilterTextChange.bind(this);
-  }
-  handleFilterTextChange(filterText) {
-    this.setState({
-      filterText: filterText
-    });
-  }
- 
-
   render() {
     return (
       <div>
-        <SearchBar
-          filterText={this.state.filterText}
-          onFilterTextChange={this.handleFilterTextChange}
-        />
-        <p>{this.state.filterText}</p>
+        <FilterableBarList />
       </div>
     );
   }
