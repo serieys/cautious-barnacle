@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
+import Leaflet from 'leaflet'
+
+import { getBarListWithQuery , getBarInfo} from '../utils/Api';
+
 import SearchBar from './SearchBar'
 import BarList from './BarList'
+import BarInfo from './BarInfo'
 import BarMap from './BarMap'
-import Leaflet from 'leaflet'
-import { getBarListWithQuery , getBarInfo} from '../utils/Api';
+
 /**
  * FilterableBarList component.
  */
@@ -34,7 +38,9 @@ class FilterableBarList extends Component {
     searchBarInfo = (id) => {
         getBarInfo(id).then((venue) => {
             this.setState({
-                selectedVenues: venue
+                selectedVenue: <BarInfo
+                venue={venue}
+            />
             });
         }
     )}
@@ -62,6 +68,7 @@ class FilterableBarList extends Component {
                 venues={this.state.venues}
                 onVenueClick={this.handleVenueClick}
             />
+            {this.state.selectedVenue}
           </div>
         );
       }
