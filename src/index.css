@@ -11,3 +11,17 @@ body {
 .leaflet-container { 
   height: 100%;
 }
+
+.form-autocomplete {
+  z-index: 9999;
+}
+
+.title {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 50px;
+}
+
+.searchInput {
+  margin-bottom: 25px;
+}
