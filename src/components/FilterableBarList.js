@@ -14,6 +14,10 @@ class FilterableBarList extends Component {
         };
     }
 
+    componentDidMount() {
+        this.searchBarWithQuery("");
+    }
+
     handleFilterTextChange = (filterText) => {
         this.setState({
           filterText: filterText

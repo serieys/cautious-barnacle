@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import BarRow from './BarRow'
 
 /**
  * BarList component.
@@ -15,7 +16,9 @@ export default class BarList extends React.Component {
         if(!(Object.keys(this.props.venues).length === 0 && this.props.venues.constructor === Object)) {
             this.props.venues.forEach((product) => {
                   rows.push(
-                    <p>{product.name}</p>
+                    <BarRow
+                    venue={product}
+                    />
                   );
               });
               return (
