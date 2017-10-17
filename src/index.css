@@ -1,0 +1,27 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+#map-container {
+  height: 500px;
+}
+
+.leaflet-container { 
+  height: 100%;
+}
+
+.form-autocomplete {
+  z-index: 9999;
+}
+
+.title {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 50px;
+}
+
+.searchInput {
+  margin-bottom: 25px;
+}
