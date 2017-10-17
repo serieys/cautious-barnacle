@@ -37,7 +37,7 @@ export default class BarMap extends Component {
         }
         const position = firstVenuePosition;
         const map = (
-          <Map center={position} zoom={13}>
+          <Map center={position} zoom={15}>
             <TileLayer
               url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
               attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'

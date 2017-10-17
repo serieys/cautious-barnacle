@@ -17,6 +17,7 @@ class FilterableBarList extends Component {
         this.state = {
           filterText: '',
           venues: {},
+          showResults: false
         };
     }
 
@@ -26,13 +27,17 @@ class FilterableBarList extends Component {
 
     handleFilterTextChange = (filterText) => {
         this.setState({
-          filterText: filterText
+          filterText: filterText,
+          showResults: true,
         });
         this.searchBarWithQuery(filterText);
     }
 
     handleVenueClick = (venueID) => {
         this.searchBarInfo(venueID);
+        this.setState({
+            showResults: false,
+          });
     }
 
     searchBarInfo = (id) => {
@@ -40,10 +45,18 @@ class FilterableBarList extends Component {
             this.setState({
                 selectedVenue: <BarInfo
                 venue={venue}
-            />
+            />,
+                filterText: venue.name,
             });
+            this.searchBarWithQuery(venue.name);
         }
     )}
+
+    handleClick = () => {
+        this.setState({
+            showResults: true,
+          });
+    }
 
       searchBarWithQuery = (query) => {
         getBarListWithQuery(query).then((venues) => {
@@ -56,20 +69,35 @@ class FilterableBarList extends Component {
       }
       render() {
         return (
-          <div>
-            <SearchBar
-                filterText={this.state.filterText}
-                onFilterTextChange={this.handleFilterTextChange}
-            />
-            <BarList
-                venues={this.state.venues}
-            />
-            <BarMap
-                venues={this.state.venues}
-                onVenueClick={this.handleVenueClick}
-            />
-            {this.state.selectedVenue}
-          </div>
+        <div className="container">
+            <div className="columns">
+                <h1 className="title column col-12">Venues search</h1>
+                <div className="column col-6 col-md-8 col-xs-12 col-mx-auto searchInput">
+                    <div className="form-autocomplete">
+                        <SearchBar
+                            filterText={this.state.filterText}
+                            onFilterTextChange={this.handleFilterTextChange}
+                            onClick={ this.handleClick }
+                        />
+                        { this.state.showResults ? <BarList
+                            venues={this.state.venues}
+                            onVenueClick={this.handleVenueClick}
+                        /> : null }
+                    </div>
+                </div>
+            </div>
+            <div className="columns">
+                <div className="column col-8 col-md-12">
+                    <BarMap
+                        venues={this.state.venues}
+                        onVenueClick={this.handleVenueClick}
+                    />
+                </div>
+                <div className="column col-4 col-md-12">
+                    {this.state.selectedVenue}
+                </div>
+            </div>
+        </div>
         );
       }
   }

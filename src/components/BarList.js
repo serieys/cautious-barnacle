@@ -11,6 +11,8 @@ export default class BarList extends React.Component {
       }
     }
 
+    
+
     render() {
         const rows = [];
         if(!(Object.keys(this.props.venues).length === 0 && this.props.venues.constructor === Object)) {
@@ -18,11 +20,14 @@ export default class BarList extends React.Component {
                   rows.push(
                     <BarRow
                     venue={venue}
+                    onVenueClick ={this.props.onVenueClick}
                     />
                   );
               });
               return (
-                <div>{rows}</div>
+                <ul className="menu">
+                    {rows}
+                </ul>
               );
 
         }

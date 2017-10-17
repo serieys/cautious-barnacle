@@ -10,13 +10,22 @@ export default class BarRow extends React.Component {
       }
     }
 
+    handleClick = (e) => {
+        console.log("test");
+        this.props.onVenueClick(e.id);
+    }
+
     render() {
         return(
-            <div>
-                <span>{this.props.venue.name}</span>
-                <span>{this.props.venue.location.address}</span>
-                <span>{this.props.venue.location.city}</span>
-            </div>
+            <li className="menu-item" onClick={() => this.handleClick(this.props.venue)}>
+            <a href="#">
+              <div className="tile tile-centered">
+                <div className="tile-content">
+                {this.props.venue.name}
+                </div>
+              </div>
+            </a>
+          </li>
         )
     }
   }

@@ -14,17 +14,21 @@ export default class SearchBar extends React.Component {
     handleFilterTextChange = (e) => {
       this.props.onFilterTextChange(e.target.value);
     }
-
+    handleClick = () => {
+      this.props.onClick();
+    }
     render() {
       return (
-        <form>
-          <input
-            type="text"
-            placeholder="Search..."
-            value={this.props.filterText}
-            onChange={this.handleFilterTextChange}
-          />
-        </form>
+          <div className="form-autocomplete-input form-input">
+              <input
+              className="form-input"
+              type="text"
+              placeholder="Search..."
+              value={this.props.filterText}
+              onChange={this.handleFilterTextChange}
+              onClick={this.handleClick}
+              />
+            </div>
       );
     }
   }
