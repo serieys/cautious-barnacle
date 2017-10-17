@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 /**
  * BarRow component.
  */
-export default class BarRow extends React.Component {
+export default class BarRow extends Component {
     constructor(props) {
       super(props);
       this.state = {
@@ -11,7 +11,6 @@ export default class BarRow extends React.Component {
     }
 
     handleClick = (e) => {
-        console.log("test");
         this.props.onVenueClick(e.id);
     }
 

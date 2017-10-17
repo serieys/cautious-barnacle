@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { render } from 'react-dom';
 import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
 
+    /**
+     * BarMap Component.
+     */
 export default class BarMap extends Component {
     constructor(props) {
       super(props);
@@ -26,7 +28,7 @@ export default class BarMap extends Component {
                     firstVenueBool = !firstVenueBool;
                 }
                   markers.push(
-                    <Marker position={position} onClick={() => this.handleClick(venue)}>
+                    <Marker  key={venue.id} position={position} onClick={() => this.handleClick(venue)}>
                     <Popup>
                       <span>{venue.name}<br/>{venue.location.address}</span>
                     </Popup>

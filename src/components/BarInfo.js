@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 
 /**
  * BarInfo component.
+ * Show info of a specified bar.
  */
 export default class SearchBar extends Component {
     constructor(props) {
@@ -14,11 +15,6 @@ export default class SearchBar extends Component {
 
     render() {
       return (
-        // <div>
-        //     <span>{this.props.venue.name}</span>
-        //     <span>Address: {this.props.venue.location.address}, {this.props.venue.location.postalCode} {this.props.venue.location.city}</span>
-        //     <span>Likes: {this.props.venue.likes.count}</span>
-        // </div>
         <div className="card">
             <div className="card-header">
                 <div className="card-title h5">{this.props.venue.name}</div>

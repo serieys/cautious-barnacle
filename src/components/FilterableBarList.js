@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Leaflet from 'leaflet'
 
 import { getBarListWithQuery , getBarInfo} from '../utils/Api';
 
@@ -10,6 +9,7 @@ import BarMap from './BarMap'
 
 /**
  * FilterableBarList component.
+ * Main component.
  */
 class FilterableBarList extends Component {
     constructor(props) {
@@ -25,6 +25,10 @@ class FilterableBarList extends Component {
         this.searchBarWithQuery("");
     }
 
+    /**
+     * Handle the text change of the search input
+     * @param {string} filterText - The string containing the value of the search input.
+     */
     handleFilterTextChange = (filterText) => {
         this.setState({
           filterText: filterText,
@@ -33,6 +37,10 @@ class FilterableBarList extends Component {
         this.searchBarWithQuery(filterText);
     }
 
+    /**
+     * Handle the venue info change when clicking on a venue
+     * @param {number} venueID - the ID of the venue you want to get the infos.
+     */
     handleVenueClick = (venueID) => {
         this.searchBarInfo(venueID);
         this.setState({
@@ -40,6 +48,34 @@ class FilterableBarList extends Component {
           });
     }
 
+
+    /**
+     * Handle when you click inside the input.
+     */
+    handleClick = () => {
+        this.setState({
+            showResults: true,
+          });
+    }
+
+    /**
+     * This make the api call + store the values we need about multiples venues.
+     * @param {string} query - the query is the term for the research.
+     */
+      searchBarWithQuery = (query) => {
+        getBarListWithQuery(query).then((venues) => {
+            if(!(Object.keys(venues).length === 0)) {
+                this.setState({
+                    venues: venues
+                });
+            }
+        })
+      }
+
+      /**
+     * This make the api call + store the values we need about a venue.
+     * @param {number} id - the ID of the venue you want to get the infos.
+     */
     searchBarInfo = (id) => {
         getBarInfo(id).then((venue) => {
             this.setState({
@@ -51,22 +87,6 @@ class FilterableBarList extends Component {
             this.searchBarWithQuery(venue.name);
         }
     )}
-
-    handleClick = () => {
-        this.setState({
-            showResults: true,
-          });
-    }
-
-      searchBarWithQuery = (query) => {
-        getBarListWithQuery(query).then((venues) => {
-            if(!(Object.keys(venues).length === 0)) {
-                this.setState({
-                    venues: venues
-                });
-            }
-        })
-      }
       render() {
         return (
         <div className="container">

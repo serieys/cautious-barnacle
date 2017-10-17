@@ -3,8 +3,9 @@ import BarRow from './BarRow'
 
 /**
  * BarList component.
+ * Display a list of bar.
  */
-export default class BarList extends React.Component {
+export default class BarList extends Component {
     constructor(props) {
       super(props);
       this.state = {
@@ -19,6 +20,7 @@ export default class BarList extends React.Component {
             this.props.venues.forEach((venue) => {
                   rows.push(
                     <BarRow
+                    key={venue.id}
                     venue={venue}
                     onVenueClick ={this.props.onVenueClick}
                     />

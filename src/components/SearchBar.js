@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 /**
  * SearchBar component.
  */
-export default class SearchBar extends React.Component {
+export default class SearchBar extends Component {
     constructor(props) {
       super(props);
       this.state = {
