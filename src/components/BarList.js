@@ -14,10 +14,10 @@ export default class BarList extends React.Component {
     render() {
         const rows = [];
         if(!(Object.keys(this.props.venues).length === 0 && this.props.venues.constructor === Object)) {
-            this.props.venues.forEach((product) => {
+            this.props.venues.forEach((venue) => {
                   rows.push(
                     <BarRow
-                    venue={product}
+                    venue={venue}
                     />
                   );
               });

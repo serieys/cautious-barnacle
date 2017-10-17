@@ -10,5 +10,14 @@
           });
         }
 
-
+        export const getBarInfo = (id) => {
+            return fetch(`https://api.foursquare.com/v2/venues/${id}?client_id=41KGRFSA3B4F0BXDCCC0ZIQRQCSLXLKGQ1CUN4O0H1KEQEFU&client_secret=JRZKJVMPKAQUNT54MRFQZAGWN4PD3OIM4S1GQWY34DON0USG&v=20171010`)
+            .then((response) => response.json())
+            .then((responseJson) => {
+              return(responseJson.response.venue)
+            })
+            .catch((error) => {
+              console.error(error);
+            });
+          }
 
